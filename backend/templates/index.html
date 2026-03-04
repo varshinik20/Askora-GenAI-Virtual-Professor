@@ -2,64 +2,121 @@
 <html lang="en">
 
 <head>
-       
     <meta charset="UTF-8">
-        <title>GenAI Virtual Professor</title>
-       
+    <title>GenAI Virtual Professor</title>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <!-- Font -->
-       
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
-       
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
 
-        <div class="app">
-                <!-- GLITTER LAYER -->
-                <div class="sparkle-layer"></div>
+    <div class="app">
 
-                <!-- HEADER -->
-                <header class="header">
-                        <h1>GenAI Virtual Professor</h1>
-                        <p>Your AI-powered learning companion</p>
-                    </header>
+        <!-- HEADER -->
 
-                <!-- MAIN CONTENT -->
-                <main class="main-container">
+        <header class="header">
 
-                        <!-- PROFESSOR VIDEO -->
-                        <div class="video-card">
-                                <div class="video-wrapper">
-                                        <video id="professorVideo" class="videoelement" muted loop preload="auto">
-                                               
+            <button class="menu-btn" onclick="toggleSidebar()">☰</button>
+
+            <div class="title">
+
+                <h1>GenAI Virtual Professor</h1>
+                <p>Your AI-powered learning companion</p>
+
+            </div>
+
+            <div class="subject-display">
+
+                Subject: <span id="selectedSubject">General</span>
+
+            </div>
+
+        </header>
+
+
+        <!-- SIDEBAR -->
+
+        <div id="sidebar" class="sidebar">
+
+            <div class="sidebar-content">
+
+                <h3>Select Subject</h3>
+
+                <button onclick="selectSubject('Mathematics')">Mathematics</button>
+                <button onclick="selectSubject('Physics')">Physics</button>
+                <button onclick="selectSubject('Chemistry')">Chemistry</button>
+                <button onclick="selectSubject('Biology')">Biology</button>
+                <button onclick="selectSubject('Social Science')">Social Science</button>
+                <button onclick="selectSubject('Computer Science')">Computer Science</button>
+                <button onclick="selectSubject('English')">English</button>
+                <button onclick="selectSubject('Tamil')">Tamil</button>
+
+                <hr>
+
+                <button onclick="selectSubject('Machine Learning')">Machine Learning</button>
+                <button onclick="selectSubject('Artificial Intelligence')">Artificial Intelligence</button>
+                <button onclick="selectSubject('Data Structures')">Data Structures</button>
+                <button onclick="selectSubject('Operating Systems')">Operating Systems</button>
+                <button onclick="selectSubject('Computer Networks')">Computer Networks</button>
+
+                <hr>
+
+                <button onclick="selectSubject('General')">General</button>
+                <button onclick="selectSubject('Others')">Others</button>
+
+            </div>
+
+        </div>
+
+
+        <!-- MAIN CONTENT -->
+
+        <div class="main-container">
+
+            <div class="left-panel">
+
+                <div class="video-card">
+
+                    <video id="professorVideo" muted loop>
+
                         <source src="{{ url_for('static', filename='professor.mp4') }}" type="video/mp4">
-                                           
+
                     </video>
-                                    </div>
-                            </div>
 
-                        <!-- EXPLANATION -->
-                        <div class="explanation-card">
-                                <h2>Professor Explanation</h2>
-                                <div id="output">Ask a question to begin...</div>
-                            </div>
+                </div>
 
-                    </main>
-            </div>
+                <textarea id="userInput" placeholder="Enter topic / syllabus / doubt here..."></textarea>
 
-        <!-- CHAT AREA -->
-        <footer class="chat-area">
-                <textarea id="userInput" placeholder="Enter topic / syllabus / doubt here..."></textarea>
-                <button onclick="askProfessor()">Ask Professor</button>
-                <audio id="audioPlayer"></audio>
-            </footer>
+                <button class="ask-btn" onclick="askProfessor()">Ask Professor</button>
 
-       
+            </div>
+
+
+            <div class="explanation-card">
+
+                <h2>Professor Explanation</h2>
+
+                <div id="output">
+
+                    Ask a question to begin...
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <audio id="audioPlayer"></audio>
+
+    </div>
+
     <script src="{{ url_for('static', filename='script.js') }}"></script>
+
 </body>
 
 </html>
