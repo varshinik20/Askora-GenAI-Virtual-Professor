@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+}
+
+/* 🌌 DARKER GALAXY BACKGROUND (Better Spark Contrast) */
+body {
+    min-height: 100vh;
+    position: relative;
+    color: #fff;
+    overflow: hidden;
+
+    background:
+        radial-gradient(circle at 20% 30%, rgba(255, 120, 220, 0.4), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(180, 100, 255, 0.4), transparent 40%),
+        linear-gradient(135deg, #120022, #3b0b73, #7b1fa2);
+
+    background-size: 200% 200%;
+    animation: galaxyFlow 18s ease infinite;
+}
+
+@keyframes galaxyFlow {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.app {
+    display: flex;
+    flex-direction: column;
+}
+
+/* ✨ SMALL ELEGANT SPARKS */
+
+.spark {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 50%;
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+    animation: floatSpark linear infinite;
+    opacity: 0;
+}
+
+@keyframes floatSpark {
+    0% {
+        transform: translateY(0vh);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    90% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+/* HEADER */
+.header {
+    text-align: center;
+    padding: 30px 10px;
+    position: relative;
+    z-index: 1;
+}
+
+.header h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #ff77e9, #c77dff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.header p {
+    opacity: 0.95;
+    margin-top: 8px;
+}
+
+/* MAIN LAYOUT */
+.main-container {
+    flex: 1;
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    z-index: 1;
+}
+
+/* NEON GLASS CARDS */
+.video-card,
+.explanation-card {
+    flex: 1;
+    max-width: 600px;
+    padding: 20px;
+    height: 420px;
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(18px);
+
+    box-shadow:
+        0 0 30px rgba(255, 100, 220, 0.9),
+        0 0 60px rgba(160, 80, 255, 0.6),
+        inset 0 0 20px rgba(255, 255, 255, 0.15);
+}
+
+/* VIDEO */
+.video-wrapper {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 16px;
+}
+
+.video-wrapper video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.1);
+}
+
+/* EXPLANATION */
+.explanation-card h2 {
+    text-align: center;
+    margin-bottom: 15px;
+    color: #ffd6ff;
+}
+
+#output {
+    height: 320px;
+    overflow-y: auto;
+    padding: 15px;
+    line-height: 1.7;
+    background: rgba(0, 0, 0, 0.45);
+    border-radius: 14px;
+}
+
+/* CHAT AREA */
+.chat-area {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 120px;
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+    z-index: 2;
+
+    background: rgba(20, 0, 40, 0.9);
+    backdrop-filter: blur(20px);
+
+    box-shadow:
+        0 -6px 30px rgba(255, 90, 220, 0.8);
+}
+
+textarea {
+    flex: 1;
+    resize: none;
+    border-radius: 14px;
+    padding: 14px;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+}
+
+/* BUTTON */
+button {
+    padding: 14px 30px;
+    border: none;
+    border-radius: 14px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff4ecd, #9b5cff);
+    color: #fff;
+
+    box-shadow:
+        0 0 20px rgba(255, 80, 200, 1),
+        0 0 40px rgba(150, 80, 255, 0.8);
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.08);
+    box-shadow:
+        0 0 35px rgba(255, 80, 200, 1),
+        0 0 70px rgba(150, 80, 255, 1);
+}
