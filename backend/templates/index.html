@@ -4,13 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>GenAI Virtual Professor</title>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
-
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
 </head>
 
 <body>
@@ -18,100 +14,74 @@
     <div class="app">
 
         <!-- HEADER -->
-
         <header class="header">
-
             <button class="menu-btn" onclick="toggleSidebar()">☰</button>
-
             <div class="title">
-
                 <h1>GenAI Virtual Professor</h1>
-                <p>Your AI-powered learning companion</p>
-
+                <p>Advanced AI Learning Experience</p>
             </div>
-
-            <div class="subject-display">
-
-                Subject: <span id="selectedSubject">General</span>
-
+            <div style="display: flex; gap: 10px;">
+                <div class="subject-display">
+                    Subject: <span id="selectedSubject">General</span>
+                </div>
+                <div class="language-display">
+                    <select id="languageSelect" onchange="updateLanguage()">
+                        <option value="english">🇺🇸 English</option>
+                        <option value="tamil">🇮🇳 Tamil</option>
+                        <option value="hindi">🇮🇳 Hindi</option>
+                    </select>
+                </div>
             </div>
-
         </header>
 
 
         <!-- SIDEBAR -->
-
         <div id="sidebar" class="sidebar">
-
             <div class="sidebar-content">
-
-                <h3>Select Subject</h3>
-
+                <h3>Modules</h3>
                 <button onclick="selectSubject('Mathematics')">Mathematics</button>
                 <button onclick="selectSubject('Physics')">Physics</button>
                 <button onclick="selectSubject('Chemistry')">Chemistry</button>
                 <button onclick="selectSubject('Biology')">Biology</button>
-                <button onclick="selectSubject('Social Science')">Social Science</button>
                 <button onclick="selectSubject('Computer Science')">Computer Science</button>
-                <button onclick="selectSubject('English')">English</button>
-                <button onclick="selectSubject('Tamil')">Tamil</button>
-
-                <hr>
-
+                <button onclick="selectSubject('Social Science')">Social Science</button>
+                <hr style="opacity: 0.1; margin: 5px 0;">
                 <button onclick="selectSubject('Machine Learning')">Machine Learning</button>
                 <button onclick="selectSubject('Artificial Intelligence')">Artificial Intelligence</button>
                 <button onclick="selectSubject('Data Structures')">Data Structures</button>
                 <button onclick="selectSubject('Operating Systems')">Operating Systems</button>
-                <button onclick="selectSubject('Computer Networks')">Computer Networks</button>
-
-                <hr>
-
-                <button onclick="selectSubject('General')">General</button>
-                <button onclick="selectSubject('Others')">Others</button>
-
+                <hr style="opacity: 0.1; margin: 5px 0;">
+                <button onclick="selectSubject('General')">General Topics</button>
             </div>
-
         </div>
 
 
         <!-- MAIN CONTENT -->
-
         <div class="main-container">
-
             <div class="left-panel">
-
                 <div class="video-card">
-
-                    <video id="professorVideo" muted loop>
-
+                    <video id="professorVideo" muted loop playsinline>
                         <source src="{{ url_for('static', filename='professor.mp4') }}" type="video/mp4">
-
                     </video>
-
+                    <!-- Status Pulsing Indicator -->
+                    <div id="statusDot" style="position: absolute; top: 20px; right: 20px; width: 12px; height: 12px; background: #ea8cd8; border-radius: 50%; opacity: 0; box-shadow: 0 0 10px #ea8cd8;"></div>
                 </div>
-
-                <textarea id="userInput" placeholder="Enter topic / syllabus / doubt here..."></textarea>
-
-                <button class="ask-btn" onclick="askProfessor()">Ask Professor</button>
-
+                <div class="input-section">
+                    <textarea id="userInput" placeholder="Ask your professor anything... (Doubt / Syllabus / Topic)"></textarea>
+                    <button id="askBtn" class="ask-btn" onclick="askProfessor()">Ask Professor</button>
+                </div>
             </div>
-
 
             <div class="explanation-card">
-
-                <h2>Professor Explanation</h2>
-
+                <h2>
+                    <span id="speakerIcon" style="opacity: 0.4;">🔊</span> 
+                    Professor Explanation
+                </h2>
                 <div id="output">
-
-                    Ask a question to begin...
-
+                    Select a subject and enter your query above to begin the session.
                 </div>
-
             </div>
-
         </div>
-
-        <audio id="audioPlayer"></audio>
 
     </div>
 

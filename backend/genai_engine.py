@@ -12,25 +12,25 @@ if not api_key:
 client = Groq(api_key=api_key)
 
 
-def generate_explanation(user_input):
+from language_module import LanguageModule
 
+def generate_explanation(user_input, language="english"):
+
+    system_prompt = LanguageModule.get_system_prompt(language)
+    
     prompt = f"""
-You are a friendly college professor.
-
-Explain the topic clearly step-by-step with examples.
-
-Topic:
+Explain the following topic:
 {user_input}
 """
 
     response = client.chat.completions.create(
         model="llama-3.1-8b-instant",
         messages=[
-            {"role": "system", "content": "You are a helpful professor."},
+            {"role": "system", "content": system_prompt + " Always finalize your explanation and do not stop in the middle of a sentence."},
             {"role": "user", "content": prompt}
         ],
         temperature=0.6,
-        max_tokens=700
+        max_tokens=1500
     )
 
     return response.choices[0].message.content.strip()
